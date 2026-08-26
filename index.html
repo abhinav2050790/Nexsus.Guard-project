@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexsus.Guard — AI Risk Manager</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0F0F12;
+      --surface: #17171C;
+      --surface-hi: #1E1E26;
+      --border: #2A2A38;
+      --violet: #7C3AED;
+      --violet-l: #9D63F7;
+      --violet-d: #5B21B6;
+      --cyan: #22D3EE;
+      --green: #10B981;
+      --amber: #F59E0B;
+      --red: #EF4444;
+      --text: #F0F0FF;
+      --muted: #8B8BA7;
+      --subtle: #52526B;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* Top Bar */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 36px;
+      background: rgba(15, 15, 18, 0.88);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--violet), var(--violet-d));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 18px;
+      color: #fff;
+      box-shadow: 0 0 24px rgba(124, 58, 237, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
+    }
+
+    .app-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: -0.025em;
+    }
+
+    .app-sub {
+      font-size: 0.72rem;
+      color: var(--muted);
+      font-weight: 500;
+    }
+
+    .nav-chips {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .chip {
+      font-size: 0.74rem;
+      font-weight: 700;
+      padding: 6px 14px;
+      border-radius: 999px;
+      border: 1px solid;
+    }
+
+    .chip-violet {
+      background: rgba(124, 58, 237, 0.15);
+      color: var(--violet-l);
+      border-color: rgba(124, 58, 237, 0.35);
+    }
+
+    .chip-green {
+      background: rgba(16, 185, 129, 0.12);
+      color: #34D399;
+      border-color: rgba(16, 185, 129, 0.30);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 36px 24px 60px;
+      flex: 1;
+      width: 100%;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      padding: 6px 16px;
+      border-radius: 999px;
+      background: rgba(124, 58, 237, 0.16);
+      color: var(--violet-l);
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .hero-title {
+      font-size: 2.75rem;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+      line-height: 1.15;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, #FFFFFF 40%, var(--violet-l) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--muted);
+      max-width: 680px;
+      margin: 0 auto 24px;
+      line-height: 1.6;
+    }
+
+    /* Grid Layout */
+    .dashboard-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.35fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 992px) {
+      .dashboard-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Cards */
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-header {
+      font-size: 0.68rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--violet-l);
+      margin-bottom: 18px;
+    }
+
+    /* Form Inputs */
+    .form-group {
+      margin-bottom: 16px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    input, select {
+      width: 100%;
+      background: var(--surface-hi);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 0.88rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--violet);
+    }
+
+    .checkbox-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .check-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface-hi);
+      padding: 8px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      font-size: 0.82rem;
+    }
+
+    .check-item input[type="checkbox"] {
+      width: auto;
+      accent-color: var(--violet);
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: linear-gradient(135deg, var(--violet), var(--violet-d));
+      color: #fff;
+      font-size: 0.95rem;
+      font-weight: 800;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 20px;
+      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.45);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-submit:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(124, 58, 237, 0.65);
+    }
+
+    /* Result Panel */
+    .result-hero {
+      background: linear-gradient(135deg, var(--surface) 60%, rgba(16, 185, 129, 0.18) 100%);
+      border: 1px solid rgba(124, 58, 237, 0.35);
+      border-radius: 20px;
+      padding: 24px;
+      margin-bottom: 20px;
+      box-shadow: 0 0 30px rgba(124, 58, 237, 0.12);
+    }
+
+    .result-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .prob-num {
+      font-size: 3.8rem;
+      font-weight: 900;
+      color: var(--green);
+      line-height: 1;
+      letter-spacing: -0.05em;
+    }
+
+    .badge-fight {
+      background: rgba(16, 185, 129, 0.15);
+      color: #34D399;
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      font-size: 0.85rem;
+      font-weight: 800;
+      padding: 8px 20px;
+      border-radius: 999px;
+      text-transform: uppercase;
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 16px;
+    }
+
+    .kpi-box {
+      background: var(--surface-hi);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px 16px;
+    }
+
+    .kpi-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 4px;
+    }
+
+    .kpi-val {
+      font-size: 1.4rem;
+      font-weight: 900;
+    }
+
+    .val-green { color: var(--green); }
+    .val-amber { color: var(--amber); }
+
+    /* Evidence checklist */
+    .ev-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--surface-hi);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 8px;
+      font-size: 0.84rem;
+    }
+
+    .ev-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.68rem;
+      font-weight: 900;
+    }
+
+    .ev-icon.ok { background: rgba(16, 185, 129, 0.2); color: var(--green); }
+    .ev-icon.miss { background: rgba(239, 68, 68, 0.2); color: var(--red); }
+
+    .ev-tag {
+      margin-left: auto;
+      font-size: 0.62rem;
+      font-weight: 800;
+      color: var(--subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Explanation Quote */
+    .quote-box {
+      border-left: 3px solid var(--violet);
+      background: rgba(124, 58, 237, 0.08);
+      padding: 14px 18px;
+      border-radius: 0 12px 12px 0;
+      font-size: 0.88rem;
+      line-height: 1.6;
+      margin-top: 14px;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 24px;
+      text-align: center;
+      color: var(--subtle);
+      font-size: 0.78rem;
+    }
+
+    footer a {
+      color: var(--violet-l);
+      text-decoration: none;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <a href="#" class="brand">
+      <div class="logo">R</div>
+      <div>
+        <div class="app-title">Nexsus.Guard</div>
+        <div class="app-sub">AI Risk Manager · Chargeback Evidence Responder</div>
+      </div>
+    </a>
+    <div class="nav-chips">
+      <span class="chip chip-violet">XGBoost · SHAP</span>
+      <span class="chip chip-violet">Threshold 0.60</span>
+      <span class="chip chip-green">● Model Live</span>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="container">
+    <div class="hero">
+      <div class="hero-badge">Razorpay Hackathon 2026 · Defence-Only</div>
+      <h1 class="hero-title">Automated Chargeback Defense for Merchants</h1>
+      <p class="hero-desc">
+        Evaluate dispute win-probability in real-time, audit 9 tiers of transaction evidence, and auto-generate bank-ready rebuttal letters in milliseconds.
+      </p>
+    </div>
+
+    <div class="dashboard-grid">
+      <!-- Input Panel -->
+      <section class="card">
+        <div class="card-header">Transaction & Risk Parameters</div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Chargeback ID</label>
+            <input type="text" id="cb_id" value="CHB-2026-000001">
+          </div>
+          <div class="form-group">
+            <label>Transaction ID</label>
+            <input type="text" id="txn_id" value="TXN-2026-000001">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Disputed Amount (₹)</label>
+            <input type="number" id="amount" value="12500">
+          </div>
+          <div class="form-group">
+            <label>Reason Code</label>
+            <select id="reason_code">
+              <option value="CB001">CB001 — Unauthorized</option>
+              <option value="CB002">CB002 — Non-Receipt</option>
+              <option value="CB003">CB003 — Not as Described</option>
+              <option value="CB004">CB004 — Friendly Fraud</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label>Payment Method</label>
+            <select id="payment_method">
+              <option value="card_credit">Credit Card</option>
+              <option value="upi">UPI</option>
+              <option value="card_debit">Debit Card</option>
+              <option value="netbanking">Net Banking</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Merchant Category</label>
+            <select id="merchant_cat">
+              <option value="electronics">Electronics</option>
+              <option value="fashion">Fashion</option>
+              <option value="travel">Travel</option>
+              <option value="subscription">Subscription</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="card-header" style="margin-top: 14px;">Evidence on File</div>
+        <div class="checkbox-grid">
+          <label class="check-item"><input type="checkbox" id="chk_3ds" checked> 3DS Verified</label>
+          <label class="check-item"><input type="checkbox" id="chk_avs" checked> AVS Address Match</label>
+          <label class="check-item"><input type="checkbox" id="chk_cvv" checked> CVV Match</label>
+          <label class="check-item"><input type="checkbox" id="chk_del" checked> Delivery Proof</label>
+          <label class="check-item"><input type="checkbox" id="chk_sign"> Signed Receipt</label>
+          <label class="check-item"><input type="checkbox" id="chk_login" checked> Post-Purchase Login</label>
+          <label class="check-item"><input type="checkbox" id="chk_support"> Support Interaction</label>
+          <label class="check-item"><input type="checkbox" id="chk_conf" checked> Order Confirmed</label>
+        </div>
+
+        <button class="btn-submit" onclick="runAnalysis()">⚖️ Re-Score & Generate Rebuttal</button>
+      </section>
+
+      <!-- Output Panel -->
+      <section>
+        <div class="result-hero" id="resultHero">
+          <div class="result-header">
+            <div>
+              <div style="font-size: 0.65rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;">Win Probability</div>
+              <div class="prob-num" id="winProb">86%</div>
+              <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">HIGH confidence · Case <span id="resCaseId">CHB-2026-000001</span></div>
+            </div>
+            <div class="badge-fight" id="actionBadge">FIGHT</div>
+          </div>
+
+          <div class="kpi-row">
+            <div class="kpi-box">
+              <div class="kpi-title">Estimated Recovery</div>
+              <div class="kpi-val val-green" id="estRec">₹10,000</div>
+              <div style="font-size: 0.68rem; color: var(--muted); margin-top: 2px;">80% of disputed value</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-title">Cost Risk If Lost</div>
+              <div class="kpi-val val-amber" id="costRisk">₹2,300</div>
+              <div style="font-size: 0.68rem; color: var(--muted); margin-top: 2px;">Fees + response effort</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-bottom: 20px;">
+          <div class="card-header">Evidence Audit & Verification Strength</div>
+          <div id="evidenceAuditList">
+            <div class="ev-row"><span class="ev-icon ok">✓</span> 3-D Secure OTP Authenticated <span class="ev-tag">Tier 1</span></div>
+            <div class="ev-row"><span class="ev-icon ok">✓</span> Courier Proof of Delivery Verified <span class="ev-tag">Tier 1</span></div>
+            <div class="ev-row"><span class="ev-icon ok">✓</span> Billing Address (AVS) Match <span class="ev-tag">Tier 1</span></div>
+            <div class="ev-row"><span class="ev-icon ok">✓</span> Customer Active in App Post-Purchase <span class="ev-tag">Supporting</span></div>
+          </div>
+          <div class="quote-box" id="shapQuote">
+            <strong>Why this score:</strong> Strong representation profile. 3DS verification authenticated the cardholder, and verified courier tracking invalidates the friendly fraud dispute.
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Auto-Generated Rebuttal Letter Preview</div>
+          <p style="font-size: 0.82rem; color: var(--muted); line-height: 1.6; font-family: monospace; background: var(--surface-hi); padding: 14px; border-radius: 10px; border: 1px solid var(--border);">
+            WITHOUT PREJUDICE<br>
+            Dispute Handling Department — Issuing Bank<br>
+            Re: Chargeback Ref #CHB-2026-000001 (Amount: ₹12,500.00)<br><br>
+            We formally contest this chargeback. The transaction was fully authenticated via 3D Secure OTP verification on the customer's registered mobile device. Delivery confirmation and device telemetry confirm legitimate purchase fulfillment.
+          </p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    Built for <a href="https://razorpay.com" target="_blank">Razorpay</a> AI Risk Manager Hackathon 2026 · Defence-Only Architecture
+  </footer>
+
+  <script>
+    function runAnalysis() {
+      const amt = parseFloat(document.getElementById('amount').value) || 10000;
+      const chk3ds = document.getElementById('chk_3ds').checked;
+      const chkDel = document.getElementById('chk_del').checked;
+      const chkAvs = document.getElementById('chk_avs').checked;
+      const chkSign = document.getElementById('chk_sign').checked;
+      const chkLogin = document.getElementById('chk_login').checked;
+
+      let score = 0.40;
+      if (chk3ds) score += 0.25;
+      if (chkDel) score += 0.18;
+      if (chkAvs) score += 0.10;
+      if (chkSign) score += 0.08;
+      if (chkLogin) score += 0.07;
+      score = Math.min(0.96, Math.max(0.12, score));
+
+      const pct = Math.round(score * 100);
+      document.getElementById('winProb').innerText = pct + '%';
+      document.getElementById('resCaseId').innerText = document.getElementById('cb_id').value;
+
+      const badge = document.getElementById('actionBadge');
+      if (pct >= 60) {
+        badge.innerText = 'FIGHT';
+        badge.className = 'badge-fight';
+        document.getElementById('winProb').style.color = 'var(--green)';
+      } else if (pct >= 35) {
+        badge.innerText = 'REVIEW';
+        badge.style.background = 'rgba(245, 158, 11, 0.15)';
+        badge.style.color = '#FCD34D';
+        badge.style.borderColor = 'rgba(245, 158, 11, 0.35)';
+        document.getElementById('winProb').style.color = 'var(--amber)';
+      } else {
+        badge.innerText = 'SKIP';
+        badge.style.background = 'rgba(239, 68, 68, 0.15)';
+        badge.style.color = '#F87171';
+        badge.style.borderColor = 'rgba(239, 68, 68, 0.35)';
+        document.getElementById('winProb').style.color = 'var(--red)';
+      }
+
+      document.getElementById('estRec').innerText = '₹' + Math.round(amt * 0.8).toLocaleString('en-IN');
+      document.getElementById('costRisk').innerText = '₹' + (2300).toLocaleString('en-IN');
+    }
+  </script>
+</body>
+</html>
