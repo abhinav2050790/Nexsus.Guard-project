@@ -1,0 +1,59 @@
+WITHOUT PREJUDICE
+
+{{MERCHANT_NAME}} — Disputes & Chargebacks Department
+Date: {{RESPONSE_DATE}}
+
+To: The Disputes Adjudication Team
+    Acquiring Bank / Card Network
+
+Re: Representment — Chargeback Dispute Response
+    Chargeback ID    : {{CHARGEBACK_ID}}
+    Reason Code      : {{REASON_CODE}} (Transaction Not Authorised)
+    Transaction Date : {{TRANSACTION_DATE}}
+    Disputed Amount  : INR {{AMOUNT_INR}}
+    Cardholder       : {{CUSTOMER_NAME}}
+
+Dear Sir or Madam,
+
+We, {{MERCHANT_NAME}}, respectfully submit this representment in response to
+the chargeback referenced above, in which the cardholder asserts that the
+transaction was not authorised. Having conducted a full review of our systems,
+we are satisfied that the dispute is without merit and that the transaction
+was legitimately initiated and authenticated by the cardholder.
+
+The cardholder's assertion is directly contradicted by the authentication
+controls applied at checkout. The payment was processed through the issuer's
+own verification regime, which requires possession of the cardholder's
+registered device and personal credentials. Such safeguards cannot be
+satisfied by a third party acting without the account holder's participation.
+Furthermore, the billing details supplied at purchase were consistent with the
+records held by the issuing bank, and activity on our platform following the
+transaction is consistent with the genuine cardholder's established behaviour.
+
+We note also that no report of theft or loss of the payment instrument was
+lodged with the issuing bank prior to this dispute being raised, and no
+complaint was received by our support desk at any time before the chargeback
+was filed. A genuine victim of unauthorised use would ordinarily act
+immediately upon observing the transaction; the absence of any such conduct
+materially undermines the present claim.
+
+In support of our position, we produce the following documentary evidence:
+
+{{EVIDENCE_LIST}}
+
+Each item is retained in the ordinary course of business and is produced in
+good faith as an authentic record. Read cumulatively, the evidence establishes
+cardholder participation to the standard contemplated by the applicable scheme
+rules, and we accordingly invite the reversal of the chargeback and the credit
+of INR {{AMOUNT_INR}} to our account. We remain willing to furnish any further
+particulars the adjudicating team may require.
+
+Yours faithfully,
+{{MERCHANT_NAME}}
+Submitted via Razorpay Dispute Portal
+
+------------------------------------------------------------------
+INTERNAL CASE ASSESSMENT (CONFIDENTIAL)
+Modeled Win Probability : {{WIN_PROBABILITY_PCT}}%
+Evidence Strength       : {{EVIDENCE_STRENGTH}}
+------------------------------------------------------------------

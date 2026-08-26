@@ -1,0 +1,60 @@
+WITHOUT PREJUDICE
+
+{{MERCHANT_NAME}} — Disputes & Chargebacks Department
+Date: {{RESPONSE_DATE}}
+
+To: The Disputes Adjudication Team
+    Acquiring Bank / Card Network
+
+Re: Representment — Chargeback Dispute Response
+    Chargeback ID    : {{CHARGEBACK_ID}}
+    Reason Code      : {{REASON_CODE}} (General Dispute Claim)
+    Transaction Date : {{TRANSACTION_DATE}}
+    Disputed Amount  : INR {{AMOUNT_INR}}
+    Cardholder       : {{CUSTOMER_NAME}}
+
+Dear Sir or Madam,
+
+We, {{MERCHANT_NAME}}, hereby respond to the above-referenced chargeback. The
+dispute as raised does not articulate a cognisable ground under the scheme
+rules; nonetheless, our complete transaction record independently demonstrates
+that the purchase was genuine, authorised and duly fulfilled, such that the
+chargeback must fail on the merits irrespective of the label ultimately
+attached to it.
+
+The cardholder is an established customer of our platform whose account
+exhibits a consistent history of transacting behaviour. The disputed purchase
+follows that established pattern precisely: access to the platform occurred
+through the customer's recognised credentials and usual environment, the order
+proceeded through the ordinary checkout journey, and post-purchase activity on
+the account is attributable to the same credentials. Nothing about the
+transaction departs from the cardholder's documented norms.
+
+Equally significant is what the record does not contain: there was no attempt
+to cancel the order, no complaint addressed to our support desk, no request
+for return or replacement, and no prior communication of dissatisfaction of
+any kind. First-time disputes raised without any antecedent grievance, by
+customers who retained the benefit of their purchase, are recognised across
+the industry as characteristic of friendly fraud, and the scheme rules permit
+representment supported by compelling evidence in precisely such cases.
+
+In support of our position, we produce the following documentary evidence:
+
+{{EVIDENCE_LIST}}
+
+These records are retained in the ordinary course of business and produced in
+good faith as authentic documents. Cumulatively, they establish voluntary
+cardholder participation in the transaction to the requisite standard. We
+therefore respectfully request that the chargeback be reversed in full and
+INR {{AMOUNT_INR}} be credited to our account, and we remain at the team's
+disposal for any supplementary documentation.
+
+Yours faithfully,
+{{MERCHANT_NAME}}
+Submitted via Razorpay Dispute Portal
+
+------------------------------------------------------------------
+INTERNAL CASE ASSESSMENT (CONFIDENTIAL)
+Modeled Win Probability : {{WIN_PROBABILITY_PCT}}%
+Evidence Strength       : {{EVIDENCE_STRENGTH}}
+------------------------------------------------------------------

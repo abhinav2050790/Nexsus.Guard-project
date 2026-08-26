@@ -1,0 +1,59 @@
+WITHOUT PREJUDICE
+
+{{MERCHANT_NAME}} — Disputes & Chargebacks Department
+Date: {{RESPONSE_DATE}}
+
+To: The Disputes Adjudication Team
+    Acquiring Bank / Card Network
+
+Re: Representment — Chargeback Dispute Response
+    Chargeback ID    : {{CHARGEBACK_ID}}
+    Reason Code      : {{REASON_CODE}} (Goods/Services Not Received)
+    Transaction Date : {{TRANSACTION_DATE}}
+    Disputed Amount  : INR {{AMOUNT_INR}}
+    Cardholder       : {{CUSTOMER_NAME}}
+
+Dear Sir or Madam,
+
+We, {{MERCHANT_NAME}}, hereby respond to the above-referenced chargeback, in
+which the cardholder alleges non-receipt of the ordered goods. We submit that
+this claim is factually incorrect. The consignment was handed to a recognised
+carrier shortly after payment, transported under a verifiable tracking
+reference, and delivered to the very address nominated by the cardholder at
+checkout.
+
+Under the applicable scheme rules, a merchant who produces legible proof of
+delivery to the cardholder's verified address discharges its obligation, and
+liability for the transaction rests with the cardholder thereafter. Our
+records demonstrate precisely that: the carrier's own systems recorded custody
+of the parcel through each scanning event up to and including final delivery,
+and no delivery-failure notice, return-to-sender event, or address discrepancy
+was ever generated against this order.
+
+We observe further that the shipping address used was neither invented by us
+nor altered after placement; it proceeded from the cardholder's own account
+profile. Should the cardholder now contend that the parcel reached a wrong
+address, it is for the cardholder to explain why an address of their own
+choosing is said to be incorrect, particularly where no such concern was ever
+communicated to us before this dispute.
+
+In support of our position, we produce the following documentary evidence:
+
+{{EVIDENCE_LIST}}
+
+The enclosed records are retained in the ordinary course of business and are
+produced in good faith as authentic documents. Taken together they establish
+fulfilment of the order beyond reasonable doubt. We therefore request that the
+chargeback be reversed in full and INR {{AMOUNT_INR}} be credited to our
+account. Carrier manifests, route scans and delivery affidavits can be
+supplied promptly upon request.
+
+Yours faithfully,
+{{MERCHANT_NAME}}
+Submitted via Razorpay Dispute Portal
+
+------------------------------------------------------------------
+INTERNAL CASE ASSESSMENT (CONFIDENTIAL)
+Modeled Win Probability : {{WIN_PROBABILITY_PCT}}%
+Evidence Strength       : {{EVIDENCE_STRENGTH}}
+------------------------------------------------------------------

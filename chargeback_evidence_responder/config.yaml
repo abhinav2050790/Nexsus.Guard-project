@@ -1,0 +1,56 @@
+# ============================================================
+# Chargeback Evidence Responder - Central Configuration
+# Razorpay Hackathon Project
+# ============================================================
+
+model:
+  algorithm: xgboost
+  params:
+    n_estimators: 500
+    max_depth: 6
+    learning_rate: 0.05
+    subsample: 0.8
+    colsample_bytree: 0.8
+    scale_pos_weight: 3
+    random_state: 42
+
+thresholds:
+  fight_above: 0.60        # win_prob >= this -> auto-fight
+  review_between: [0.30, 0.60]  # between -> human review queue
+  skip_below: 0.30         # below -> accept chargeback
+
+costs:
+  chargeback_fee_inr: 1500       # bank fee per lost chargeback
+  response_effort_inr: 800      # manual effort cost per fought case
+  avg_transaction_inr: 8500     # average disputed transaction value
+
+data:
+  n_samples: 50000
+  test_size: 0.20
+  val_size: 0.20
+  random_state: 42
+
+evidence_weights:
+  is_3ds_verified: 0.25
+  has_delivery_confirmation: 0.20
+  avs_match: 0.15
+  cvv_match: 0.10
+  has_signed_receipt: 0.10
+  has_login_after_purchase: 0.08
+  has_support_interaction: 0.07
+  order_confirmation_sent: 0.03
+  refund_policy_acknowledged: 0.02
+
+reason_codes:
+  CB001:
+    label: unauthorized
+    historical_win_rate: 0.72
+  CB002:
+    label: non_receipt
+    historical_win_rate: 0.58
+  CB003:
+    label: not_as_described
+    historical_win_rate: 0.45
+  CB004:
+    label: friendly_fraud
+    historical_win_rate: 0.81

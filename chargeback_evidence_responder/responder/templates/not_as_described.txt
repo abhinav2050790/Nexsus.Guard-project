@@ -1,0 +1,60 @@
+WITHOUT PREJUDICE
+
+{{MERCHANT_NAME}} — Disputes & Chargebacks Department
+Date: {{RESPONSE_DATE}}
+
+To: The Disputes Adjudication Team
+    Acquiring Bank / Card Network
+
+Re: Representment — Chargeback Dispute Response
+    Chargeback ID    : {{CHARGEBACK_ID}}
+    Reason Code      : {{REASON_CODE}} (Not as Described)
+    Transaction Date : {{TRANSACTION_DATE}}
+    Disputed Amount  : INR {{AMOUNT_INR}}
+    Cardholder       : {{CUSTOMER_NAME}}
+
+Dear Sir or Madam,
+
+We, {{MERCHANT_NAME}}, submit this response to the above-referenced chargeback,
+in which the cardholder contends that the goods supplied were not as
+described. Upon careful examination of the order file, we find no basis
+whatsoever for this allegation. The item dispatched conforms in every material
+respect to the description, specifications, images and condition statements
+published on our platform at the time of purchase, all of which were plainly
+visible to the cardholder before payment was authorised.
+
+Scheme rules permit a "not as described" chargeback only where a material
+difference exists between the goods delivered and their description. No such
+difference has been identified by the cardholder, either to us or to the
+issuing bank. The chargeback form itself articulates no specific deficiency;
+it merely recites the formulaic ground. A bare allegation of dissatisfaction,
+unsupported by particulars, cannot satisfy the evidentiary burden that the
+rules impose upon a claimant.
+
+We further place on record that the cardholder did not avail the documented
+return and replacement window set out in our published policy before
+initiating this dispute. That policy — acknowledged by the cardholder at
+checkout — affords an adequate remedy for any genuine concern, and the failure
+to engage with it strongly suggests that the present claim is opportunistic
+rather than bona fide.
+
+In support of our position, we produce the following documentary evidence:
+
+{{EVIDENCE_LIST}}
+
+Each document is retained in the ordinary course of business and produced in
+good faith as an authentic record. Collectively, they establish that the goods
+delivered matched their published description and that the cardholder accepted
+the terms governing the sale. We accordingly invite the reversal of the
+chargeback and the credit of INR {{AMOUNT_INR}} to our account, and we shall
+gladly furnish supplier certifications or listing archives if required.
+
+Yours faithfully,
+{{MERCHANT_NAME}}
+Submitted via Razorpay Dispute Portal
+
+------------------------------------------------------------------
+INTERNAL CASE ASSESSMENT (CONFIDENTIAL)
+Modeled Win Probability : {{WIN_PROBABILITY_PCT}}%
+Evidence Strength       : {{EVIDENCE_STRENGTH}}
+------------------------------------------------------------------
