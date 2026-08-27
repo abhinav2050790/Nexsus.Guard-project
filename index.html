@@ -3,45 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nexsus.Guard — AI Risk Manager</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <title>Nexsus.Guard — Apple HIG Design System</title>
   <style>
     :root {
-      --bg: #0F0F12;
-      --surface: #17171C;
-      --surface-hi: #1E1E26;
-      --border: #2A2A38;
-      --violet: #7C3AED;
-      --violet-l: #9D63F7;
-      --violet-d: #5B21B6;
-      --cyan: #22D3EE;
-      --green: #10B981;
-      --amber: #F59E0B;
-      --red: #EF4444;
-      --text: #F0F0FF;
-      --muted: #8B8BA7;
-      --subtle: #52526B;
+      --apple-bg: #08080A;
+      --apple-surface: rgba(28, 28, 30, 0.75);
+      --apple-surface-hi: rgba(44, 44, 46, 0.85);
+      --apple-border: rgba(255, 255, 255, 0.10);
+      --apple-border-hi: rgba(255, 255, 255, 0.18);
+      
+      --system-blue: #0A84FF;
+      --system-blue-grad: linear-gradient(180deg, #0A84FF 0%, #0071E3 100%);
+      --system-green: #30D158;
+      --system-orange: #FF9F0A;
+      --system-red: #FF453A;
+      --system-purple: #BF5AF2;
+      --system-text: #F5F5F7;
+      --system-muted: #8E8E93;
+      --system-subtle: #636366;
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
+      -webkit-font-smoothing: antialiased;
     }
 
     body {
-      background-color: var(--bg);
-      color: var(--text);
-      font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+      background-color: var(--apple-bg);
+      color: var(--system-text);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
+      letter-spacing: -0.015em;
     }
 
-    /* Top Bar */
+    /* ── Top Bar (Apple Translucent Vibrancy) ── */
     .topbar {
       position: sticky;
       top: 0;
@@ -50,84 +50,83 @@
       align-items: center;
       justify-content: space-between;
       padding: 16px 36px;
-      background: rgba(15, 15, 18, 0.88);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(18, 18, 20, 0.78);
+      backdrop-filter: blur(30px) saturate(190%);
+      -webkit-backdrop-filter: blur(30px) saturate(190%);
+      border-bottom: 1px solid var(--apple-border);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
       text-decoration: none;
       color: inherit;
     }
 
-    .logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, var(--violet), var(--violet-d));
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 9px;
+      background: var(--system-blue-grad);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 900;
-      font-size: 18px;
-      color: #fff;
-      box-shadow: 0 0 24px rgba(124, 58, 237, 0.5), 0 4px 12px rgba(0, 0, 0, 0.4);
+      font-weight: 800;
+      font-size: 19px;
+      color: #FFFFFF;
+      box-shadow: 0 4px 16px rgba(10, 132, 255, 0.35);
     }
 
     .app-title {
-      font-size: 1.15rem;
-      font-weight: 800;
+      font-size: 1.12rem;
+      font-weight: 700;
       letter-spacing: -0.025em;
     }
 
     .app-sub {
       font-size: 0.72rem;
-      color: var(--muted);
+      color: var(--system-muted);
       font-weight: 500;
     }
 
     .nav-chips {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
     }
 
     .chip {
       font-size: 0.74rem;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 999px;
-      border: 1px solid;
+      font-weight: 600;
+      padding: 5px 14px;
+      border-radius: 980px;
     }
 
-    .chip-violet {
-      background: rgba(124, 58, 237, 0.15);
-      color: var(--violet-l);
-      border-color: rgba(124, 58, 237, 0.35);
+    .chip-blue {
+      background: rgba(10, 132, 255, 0.15);
+      color: var(--system-blue);
+      border: 1px solid rgba(10, 132, 255, 0.30);
     }
 
     .chip-green {
-      background: rgba(16, 185, 129, 0.12);
-      color: #34D399;
-      border-color: rgba(16, 185, 129, 0.30);
+      background: rgba(48, 209, 88, 0.15);
+      color: var(--system-green);
+      border: 1px solid rgba(48, 209, 88, 0.30);
     }
 
-    /* Container */
+    /* ── Main Canvas ── */
     .container {
       max-width: 1360px;
       margin: 0 auto;
-      padding: 36px 24px 60px;
+      padding: 40px 24px 60px;
       flex: 1;
       width: 100%;
     }
 
-    /* Hero */
     .hero {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 36px;
     }
 
     .hero-badge {
@@ -135,70 +134,72 @@
       align-items: center;
       gap: 6px;
       font-size: 0.76rem;
-      font-weight: 800;
+      font-weight: 700;
       padding: 6px 16px;
-      border-radius: 999px;
-      background: rgba(124, 58, 237, 0.16);
-      color: var(--violet-l);
-      border: 1px solid rgba(124, 58, 237, 0.35);
-      margin-bottom: 16px;
+      border-radius: 980px;
+      background: rgba(10, 132, 255, 0.12);
+      color: var(--system-blue);
+      border: 1px solid rgba(10, 132, 255, 0.30);
+      margin-bottom: 14px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.04em;
     }
 
     .hero-title {
       font-size: 2.75rem;
-      font-weight: 900;
+      font-weight: 800;
       letter-spacing: -0.04em;
       line-height: 1.15;
       margin-bottom: 12px;
-      background: linear-gradient(135deg, #FFFFFF 40%, var(--violet-l) 100%);
+      background: linear-gradient(180deg, #FFFFFF 40%, #A1A1A6 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
     .hero-desc {
       font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 680px;
-      margin: 0 auto 24px;
-      line-height: 1.6;
+      color: var(--system-muted);
+      max-width: 660px;
+      margin: 0 auto 20px;
+      line-height: 1.55;
     }
 
-    /* Grid Layout */
-    .dashboard-grid {
+    /* ── Dashboard Grid ── */
+    .grid {
       display: grid;
       grid-template-columns: 1fr 1.35fr;
       gap: 24px;
     }
 
     @media (max-width: 992px) {
-      .dashboard-grid {
+      .grid {
         grid-template-columns: 1fr;
       }
     }
 
-    /* Cards */
+    /* ── Frosted Glass Cards (DESIGN.md) ── */
     .card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      background: var(--apple-surface);
+      backdrop-filter: blur(30px) saturate(180%);
+      -webkit-backdrop-filter: blur(30px) saturate(180%);
+      border: 1px solid var(--apple-border);
+      border-radius: 18px;
       padding: 24px;
-      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.36);
     }
 
     .card-header {
       font-size: 0.68rem;
-      font-weight: 800;
-      letter-spacing: 0.12em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: var(--violet-l);
-      margin-bottom: 18px;
+      color: var(--system-muted);
+      margin-bottom: 16px;
     }
 
-    /* Form Inputs */
+    /* ── Form Controls (Apple HIG) ── */
     .form-group {
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
 
     .form-row {
@@ -211,31 +212,32 @@
       display: block;
       font-size: 0.8rem;
       font-weight: 600;
-      color: var(--muted);
+      color: var(--system-muted);
       margin-bottom: 6px;
     }
 
     input, select {
       width: 100%;
-      background: var(--surface-hi);
-      color: var(--text);
-      border: 1px solid var(--border);
+      background: var(--apple-surface-hi);
+      color: var(--system-text);
+      border: 1px solid var(--apple-border);
       border-radius: 10px;
       padding: 10px 14px;
       font-size: 0.88rem;
       font-family: inherit;
       outline: none;
-      transition: border-color 0.2s;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     input:focus, select:focus {
-      border-color: var(--violet);
+      border-color: var(--system-blue);
+      box-shadow: 0 0 0 3px rgba(10, 132, 255, 0.25);
     }
 
     .checkbox-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
       margin-top: 10px;
     }
 
@@ -243,50 +245,58 @@
       display: flex;
       align-items: center;
       gap: 8px;
-      background: var(--surface-hi);
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid var(--border);
+      background: var(--apple-surface-hi);
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1px solid var(--apple-border);
       cursor: pointer;
       font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--system-text);
     }
 
     .check-item input[type="checkbox"] {
       width: auto;
-      accent-color: var(--violet);
+      accent-color: var(--system-blue);
     }
 
-    .btn-submit {
+    /* ── Apple Capsule Action Button ── */
+    .btn-apple {
       width: 100%;
-      background: linear-gradient(135deg, var(--violet), var(--violet-d));
-      color: #fff;
+      background: var(--system-blue-grad);
+      color: #FFFFFF;
       font-size: 0.95rem;
-      font-weight: 800;
+      font-weight: 700;
       padding: 14px;
       border: none;
-      border-radius: 12px;
+      border-radius: 980px;
       cursor: pointer;
       margin-top: 20px;
-      box-shadow: 0 4px 20px rgba(124, 58, 237, 0.45);
-      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 18px rgba(10, 132, 255, 0.40);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      letter-spacing: -0.01em;
     }
 
-    .btn-submit:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 28px rgba(124, 58, 237, 0.65);
+    .btn-apple:hover {
+      box-shadow: 0 6px 24px rgba(10, 132, 255, 0.60);
+      transform: scale(1.01);
     }
 
-    /* Result Panel */
+    .btn-apple:active {
+      transform: scale(0.98);
+    }
+
+    /* ── Hero Result Panel ── */
     .result-hero {
-      background: linear-gradient(135deg, var(--surface) 60%, rgba(16, 185, 129, 0.18) 100%);
-      border: 1px solid rgba(124, 58, 237, 0.35);
-      border-radius: 20px;
+      background: var(--apple-surface);
+      border: 1px solid var(--apple-border);
+      border-radius: 18px;
       padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 30px rgba(124, 58, 237, 0.12);
+      margin-bottom: 16px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.36), 0 0 30px rgba(10, 132, 255, 0.06);
     }
 
-    .result-header {
+    .result-top {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
@@ -296,62 +306,64 @@
     .prob-num {
       font-size: 3.8rem;
       font-weight: 900;
-      color: var(--green);
+      color: var(--system-green);
       line-height: 1;
       letter-spacing: -0.05em;
     }
 
-    .badge-fight {
-      background: rgba(16, 185, 129, 0.15);
-      color: #34D399;
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      font-size: 0.85rem;
-      font-weight: 800;
-      padding: 8px 20px;
-      border-radius: 999px;
+    .badge-capsule {
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 7px 20px;
+      border-radius: 980px;
       text-transform: uppercase;
+      letter-spacing: 0.02em;
     }
 
-    .kpi-row {
+    .badge-fight {
+      background: rgba(48, 209, 88, 0.15);
+      color: var(--system-green);
+      border: 1px solid rgba(48, 209, 88, 0.35);
+    }
+
+    .kpi-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 12px;
       margin-top: 16px;
     }
 
-    .kpi-box {
-      background: var(--surface-hi);
-      border: 1px solid var(--border);
+    .kpi-card {
+      background: var(--apple-surface-hi);
+      border: 1px solid var(--apple-border);
       border-radius: 14px;
       padding: 14px 16px;
     }
 
     .kpi-title {
-      font-size: 0.65rem;
-      font-weight: 700;
+      font-size: 0.68rem;
+      font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
+      letter-spacing: 0.05em;
+      color: var(--system-muted);
       margin-bottom: 4px;
     }
 
     .kpi-val {
-      font-size: 1.4rem;
-      font-weight: 900;
+      font-size: 1.45rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
     }
 
-    .val-green { color: var(--green); }
-    .val-amber { color: var(--amber); }
-
-    /* Evidence checklist */
+    /* ── Evidence Rows ── */
     .ev-row {
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 12px;
-      background: var(--surface-hi);
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      padding: 10px 14px;
+      background: var(--apple-surface-hi);
+      border: 1px solid var(--apple-border);
+      border-radius: 12px;
       margin-bottom: 8px;
       font-size: 0.84rem;
     }
@@ -363,26 +375,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.68rem;
+      font-size: 0.65rem;
       font-weight: 900;
     }
 
-    .ev-icon.ok { background: rgba(16, 185, 129, 0.2); color: var(--green); }
-    .ev-icon.miss { background: rgba(239, 68, 68, 0.2); color: var(--red); }
+    .ev-icon.ok   { background: rgba(48, 209, 88, 0.20); color: var(--system-green); }
+    .ev-icon.miss { background: rgba(255, 69, 58, 0.20); color: var(--system-red); }
 
     .ev-tag {
       margin-left: auto;
-      font-size: 0.62rem;
-      font-weight: 800;
-      color: var(--subtle);
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--system-subtle);
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.05em;
     }
 
-    /* Explanation Quote */
     .quote-box {
-      border-left: 3px solid var(--violet);
-      background: rgba(124, 58, 237, 0.08);
+      border-left: 3px solid var(--system-blue);
+      background: rgba(10, 132, 255, 0.08);
       padding: 14px 18px;
       border-radius: 0 12px 12px 0;
       font-size: 0.88rem;
@@ -390,54 +401,51 @@
       margin-top: 14px;
     }
 
-    /* Footer */
     footer {
-      border-top: 1px solid var(--border);
+      border-top: 1px solid var(--apple-border);
       padding: 24px;
       text-align: center;
-      color: var(--subtle);
-      font-size: 0.78rem;
+      color: var(--system-subtle);
+      font-size: 0.76rem;
     }
 
     footer a {
-      color: var(--violet-l);
+      color: var(--system-blue);
       text-decoration: none;
-      font-weight: 700;
+      font-weight: 600;
     }
   </style>
 </head>
 <body>
 
-  <!-- Topbar -->
   <header class="topbar">
     <a href="#" class="brand">
-      <div class="logo">R</div>
+      <div class="logo-icon"></div>
       <div>
         <div class="app-title">Nexsus.Guard</div>
-        <div class="app-sub">AI Risk Manager · Chargeback Evidence Responder</div>
+        <div class="app-sub">AI Risk Manager · Apple HIG UI</div>
       </div>
     </a>
     <div class="nav-chips">
-      <span class="chip chip-violet">XGBoost · SHAP</span>
-      <span class="chip chip-violet">Threshold 0.60</span>
-      <span class="chip chip-green">● Model Live</span>
+      <span class="chip chip-blue">XGBoost · SHAP</span>
+      <span class="chip chip-blue">Threshold 0.60</span>
+      <span class="chip chip-green">● Online</span>
     </div>
   </header>
 
-  <!-- Main Container -->
   <main class="container">
     <div class="hero">
-      <div class="hero-badge">Razorpay Hackathon 2026 · Defence-Only</div>
-      <h1 class="hero-title">Automated Chargeback Defense for Merchants</h1>
+      <div class="hero-badge"> Apple Design System · Defence-Only</div>
+      <h1 class="hero-title">Automated Chargeback Defense</h1>
       <p class="hero-desc">
-        Evaluate dispute win-probability in real-time, audit 9 tiers of transaction evidence, and auto-generate bank-ready rebuttal letters in milliseconds.
+        Evaluate dispute win-probability with calibrated ML models, audit 9 tiers of transaction verification, and generate formal bank representation packages.
       </p>
     </div>
 
-    <div class="dashboard-grid">
-      <!-- Input Panel -->
+    <div class="grid">
+      <!-- Parameters Form -->
       <section class="card">
-        <div class="card-header">Transaction & Risk Parameters</div>
+        <div class="card-header">Dispute Parameters</div>
         
         <div class="form-row">
           <div class="form-group">
@@ -487,49 +495,49 @@
           </div>
         </div>
 
-        <div class="card-header" style="margin-top: 14px;">Evidence on File</div>
+        <div class="card-header" style="margin-top: 14px;">Evidence Verification Schedule</div>
         <div class="checkbox-grid">
-          <label class="check-item"><input type="checkbox" id="chk_3ds" checked> 3DS Verified</label>
+          <label class="check-item"><input type="checkbox" id="chk_3ds" checked> 3DS Authenticated</label>
           <label class="check-item"><input type="checkbox" id="chk_avs" checked> AVS Address Match</label>
-          <label class="check-item"><input type="checkbox" id="chk_cvv" checked> CVV Match</label>
-          <label class="check-item"><input type="checkbox" id="chk_del" checked> Delivery Proof</label>
+          <label class="check-item"><input type="checkbox" id="chk_cvv" checked> CVV Security Match</label>
+          <label class="check-item"><input type="checkbox" id="chk_del" checked> Courier Delivery</label>
           <label class="check-item"><input type="checkbox" id="chk_sign"> Signed Receipt</label>
-          <label class="check-item"><input type="checkbox" id="chk_login" checked> Post-Purchase Login</label>
+          <label class="check-item"><input type="checkbox" id="chk_login" checked> Post-Purchase Activity</label>
           <label class="check-item"><input type="checkbox" id="chk_support"> Support Interaction</label>
-          <label class="check-item"><input type="checkbox" id="chk_conf" checked> Order Confirmed</label>
+          <label class="check-item"><input type="checkbox" id="chk_conf" checked> Order Confirmation</label>
         </div>
 
-        <button class="btn-submit" onclick="runAnalysis()">⚖️ Re-Score & Generate Rebuttal</button>
+        <button class="btn-apple" onclick="runAnalysis()">Evaluate Dispute Risk</button>
       </section>
 
-      <!-- Output Panel -->
+      <!-- Output Section -->
       <section>
         <div class="result-hero" id="resultHero">
-          <div class="result-header">
+          <div class="result-top">
             <div>
-              <div style="font-size: 0.65rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px;">Win Probability</div>
+              <div style="font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--system-muted); margin-bottom: 6px;">Win Probability</div>
               <div class="prob-num" id="winProb">86%</div>
-              <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">HIGH confidence · Case <span id="resCaseId">CHB-2026-000001</span></div>
+              <div style="font-size: 0.82rem; color: var(--system-muted); margin-top: 4px;">HIGH Confidence · Case <span id="resCaseId">CHB-2026-000001</span></div>
             </div>
-            <div class="badge-fight" id="actionBadge">FIGHT</div>
+            <div class="badge-capsule badge-fight" id="actionBadge">FIGHT</div>
           </div>
 
-          <div class="kpi-row">
-            <div class="kpi-box">
+          <div class="kpi-grid">
+            <div class="kpi-card">
               <div class="kpi-title">Estimated Recovery</div>
-              <div class="kpi-val val-green" id="estRec">₹10,000</div>
-              <div style="font-size: 0.68rem; color: var(--muted); margin-top: 2px;">80% of disputed value</div>
+              <div class="kpi-val" style="color: var(--system-green);" id="estRec">₹10,000</div>
+              <div style="font-size: 0.70rem; color: var(--system-muted); margin-top: 2px;">80% of disputed value</div>
             </div>
-            <div class="kpi-box">
+            <div class="kpi-card">
               <div class="kpi-title">Cost Risk If Lost</div>
-              <div class="kpi-val val-amber" id="costRisk">₹2,300</div>
-              <div style="font-size: 0.68rem; color: var(--muted); margin-top: 2px;">Fees + response effort</div>
+              <div class="kpi-val" style="color: var(--system-orange);" id="costRisk">₹2,300</div>
+              <div style="font-size: 0.70rem; color: var(--system-muted); margin-top: 2px;">Fees + representment effort</div>
             </div>
           </div>
         </div>
 
-        <div class="card" style="margin-bottom: 20px;">
-          <div class="card-header">Evidence Audit & Verification Strength</div>
+        <div class="card" style="margin-bottom: 16px;">
+          <div class="card-header">Evidence Audit & Security Signals</div>
           <div id="evidenceAuditList">
             <div class="ev-row"><span class="ev-icon ok">✓</span> 3-D Secure OTP Authenticated <span class="ev-tag">Tier 1</span></div>
             <div class="ev-row"><span class="ev-icon ok">✓</span> Courier Proof of Delivery Verified <span class="ev-tag">Tier 1</span></div>
@@ -537,13 +545,13 @@
             <div class="ev-row"><span class="ev-icon ok">✓</span> Customer Active in App Post-Purchase <span class="ev-tag">Supporting</span></div>
           </div>
           <div class="quote-box" id="shapQuote">
-            <strong>Why this score:</strong> Strong representation profile. 3DS verification authenticated the cardholder, and verified courier tracking invalidates the friendly fraud dispute.
+            <strong>Decision Rationale:</strong> Strong defence profile. 3DS authenticated the cardholder, and verified courier tracking invalidates the friendly fraud dispute.
           </div>
         </div>
 
         <div class="card">
-          <div class="card-header">Auto-Generated Rebuttal Letter Preview</div>
-          <p style="font-size: 0.82rem; color: var(--muted); line-height: 1.6; font-family: monospace; background: var(--surface-hi); padding: 14px; border-radius: 10px; border: 1px solid var(--border);">
+          <div class="card-header">Rebuttal Letter Preview</div>
+          <p style="font-size: 0.84rem; color: var(--system-muted); line-height: 1.6; font-family: ui-monospace, Menlo, Consolas, monospace; background: var(--apple-surface-hi); padding: 14px; border-radius: 12px; border: 1px solid var(--apple-border);">
             WITHOUT PREJUDICE<br>
             Dispute Handling Department — Issuing Bank<br>
             Re: Chargeback Ref #CHB-2026-000001 (Amount: ₹12,500.00)<br><br>
@@ -555,7 +563,7 @@
   </main>
 
   <footer>
-    Built for <a href="https://razorpay.com" target="_blank">Razorpay</a> AI Risk Manager Hackathon 2026 · Defence-Only Architecture
+    Designed with Apple Human Interface Guidelines · Built for Razorpay Hackathon 2026 · Defence-Only Architecture
   </footer>
 
   <script>
@@ -582,20 +590,20 @@
       const badge = document.getElementById('actionBadge');
       if (pct >= 60) {
         badge.innerText = 'FIGHT';
-        badge.className = 'badge-fight';
-        document.getElementById('winProb').style.color = 'var(--green)';
+        badge.className = 'badge-capsule badge-fight';
+        document.getElementById('winProb').style.color = 'var(--system-green)';
       } else if (pct >= 35) {
         badge.innerText = 'REVIEW';
-        badge.style.background = 'rgba(245, 158, 11, 0.15)';
-        badge.style.color = '#FCD34D';
-        badge.style.borderColor = 'rgba(245, 158, 11, 0.35)';
-        document.getElementById('winProb').style.color = 'var(--amber)';
+        badge.style.background = 'rgba(255, 159, 10, 0.15)';
+        badge.style.color = 'var(--system-orange)';
+        badge.style.borderColor = 'rgba(255, 159, 10, 0.35)';
+        document.getElementById('winProb').style.color = 'var(--system-orange)';
       } else {
         badge.innerText = 'SKIP';
-        badge.style.background = 'rgba(239, 68, 68, 0.15)';
-        badge.style.color = '#F87171';
-        badge.style.borderColor = 'rgba(239, 68, 68, 0.35)';
-        document.getElementById('winProb').style.color = 'var(--red)';
+        badge.style.background = 'rgba(255, 69, 58, 0.15)';
+        badge.style.color = 'var(--system-red)';
+        badge.style.borderColor = 'rgba(255, 69, 58, 0.35)';
+        document.getElementById('winProb').style.color = 'var(--system-red)';
       }
 
       document.getElementById('estRec').innerText = '₹' + Math.round(amt * 0.8).toLocaleString('en-IN');
