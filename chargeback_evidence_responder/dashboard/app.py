@@ -53,9 +53,11 @@ STRENGTH_TON   = {"STRONG": AP_GREEN, "MODERATE": AP_ORANGE, "WEAK": AP_RED}
 # ── Apple CSS ────────────────────────────────────────────────────────────────
 CSS = f"""
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
 /* ── Typography: Apple SF Pro System Fonts ── */
 html, body, [class*="css"] {{
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Plus Jakarta Sans", "Inter", sans-serif;
   letter-spacing: -0.015em;
 }}
 
