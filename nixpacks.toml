@@ -1,0 +1,15 @@
+# Nixpacks build plan — deploy the FastAPI service from the repo root.
+# `railway up` uploads the whole repo; this tells Nixpacks the app lives
+# in chargeback_evidence_responder/ and how to start it.
+
+[phases.setup]
+nixPkgs = ["python312"]
+aptPkgs = ["build-essential", "curl"]
+
+[phases.install]
+cmds = [
+  "cd chargeback_evidence_responder && pip install --upgrade pip && pip install -r requirements.txt"
+]
+
+[start]
+cmd = "cd chargeback_evidence_responder && exec uvicorn api.main:app --host 0.0.0.0 --port $PORT"

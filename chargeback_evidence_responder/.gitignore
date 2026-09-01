@@ -25,8 +25,9 @@ env/
 # Model artifacts — pkl files ARE tracked (required for cloud deploys)
 !model/artifacts/*.pkl
 
-# Generated data (regenerable via generator.py)
-data/chargebacks_synthetic.csv
+# Generated data — tracked so cloud deploys can serve it without retraining
+# (fully deterministic: seed 42, regenerate via data/generator.py)
+# data/chargebacks_synthetic.csv
 
 # SQLite DB tracked so fresh clones/deploys boot with schema + seed data
 !data/chargebacks.db
