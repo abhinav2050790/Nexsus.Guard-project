@@ -181,4 +181,21 @@ $env:PYTHONIOENCODING='utf-8'; .\.venv\Scripts\python.exe run_training.py  # ret
 
 1. Read this file fully.
 2. Verify env: `& ".venv\Scripts\python.exe" --version` inside package dir.
-3. Continue at the first ⬜ phase (currently **Phase 12: README.md + final end-to-end integration test** — setup instructions, demo script, architecture summary; then run one full pipeline pass generator→train→API analyze→dashboard).
+3. Continue at the first ⬜ phase (currently none — see Deployment below).
+
+---
+
+## Deployment (2026-09-02) — ALL LIVE ✅
+
+| Service | Platform | URL | Notes |
+|---|---|---|---|
+| Static demo SPA | Vercel | https://nexsus-guard.vercel.app | Apple HIG `index.html`; deployed from temp staging dir (repo root deploy bundled 1.5GB .venv); project `nexsus-guard`, `.vercel/` gitignored |
+| FastAPI backend | Railway | https://nexsus-guard-api-production.up.railway.app | `/health` ok · `/analyze` verified (94.35% FIGHT, STRONG) · `/docs` live |
+| Streamlit dashboard | Railway | https://nexsus-guard-dashboard-production.up.railway.app | `/_stcore/health` ok · 4 tabs, model metrics from CSV |
+
+- Railway project `nexsus-guard` (ID `1371b37a-c0bc-4738-8b98-b1a63a6e4716`), CLI authed as abhinavcr7ronaldo@gmail.com.
+- **Key gotcha:** `railway up` from repo root triggered **static-site detection** (Caddy fileserver serving index.html) — root `nixpacks.toml` was ignored because the builder is **RAILPACK**, not Nixpacks. Fixed with a root `Dockerfile` (Docker detection wins over static).
+- Both Railway services share one image via `docker-start.sh` + `SERVICE_ROLE` env (`api` default, `dashboard` for the Streamlit service).
+- `data/chargebacks_synthetic.csv` is now **tracked in git** (deterministic, seed 42) so the dashboard's Model Performance tab works in the cloud without retraining.
+- Payload field for reason code is `chargeback_reason_code` (schemas.py), not `reason_code`.
+- Railway vars set: API → PYTHON_VERSION/MPLBACKEND/CHARGEBACK_LOG_LEVEL; Dashboard → SERVICE_ROLE=dashboard/MPLBACKEND/PYTHONUNBUFFERED.
