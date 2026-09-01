@@ -22,13 +22,14 @@ env/
 *.db
 *.sqlite3
 
-# Model artifacts (regenerable)
-model/artifacts/*.pkl
-model/artifacts/*.json
-!model/artifacts/.gitkeep
+# Model artifacts — pkl files ARE tracked (required for cloud deploys)
+!model/artifacts/*.pkl
 
 # Generated data (regenerable via generator.py)
 data/chargebacks_synthetic.csv
+
+# SQLite DB tracked so fresh clones/deploys boot with schema + seed data
+!data/chargebacks.db
 
 # Logs
 logs/
